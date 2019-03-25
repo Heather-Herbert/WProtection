@@ -9,9 +9,10 @@
 namespace WProtection;
 
 
-class settings
+// Change the class name to settings to make active.
+class settingsSample
 {
-    public $DB_HOST = "localhost";
+    public $DB_DSN = "localhost";
     public $DB_USER = "username";
     public $DB_PASS = "password";
 
