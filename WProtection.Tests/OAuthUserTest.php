@@ -68,5 +68,15 @@ class OAuthUserTest extends TestCase
         $this->assertTrue($testUser->getSecret() != $testString);
     }
 
+    public function testInitalSetup() : void
+    {
+        $testUser = new OAuthUser();
+        $this->assertEquals("",$testUser->getGUID());
+        $this->assertEquals("",$testUser->getSecret());
+        $this->assertEquals("",$testUser->getEmail());
+        $this->assertEquals("",$testUser->getName());
+        $this->assertEquals(0,$testUser->getLevel());
+
+    }
 
 }
