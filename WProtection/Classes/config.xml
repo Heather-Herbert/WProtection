@@ -9,7 +9,6 @@
     <appender name="LogFileAppender" class="LoggerAppenderRollingFile">
         <param name="File" value="/var/log/WProtection" />
         <datePattern value="yyyy-MM-dd' WProtection_DEV.log'" />
-        <param name="AppendToFile" value="true" />
         <rollingStyle value="Date" />
         <maxSizeRollBackups value="10" />
         <maximumFileSize value="10MB" />

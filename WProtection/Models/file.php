@@ -38,9 +38,9 @@ class file
     private $_hash;                     // varchar(64)
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getVersion()
+    public function getVersion() : string
     {
         return $this->_version;
     }
@@ -48,7 +48,7 @@ class file
     /**
      * @param string $version wordpress version of the file
      */
-    public function setVersion($version)
+    public function setVersion(string $version)
     {
         if (! strlen($version) > 45) {
             $this->_version = $version;
@@ -58,17 +58,17 @@ class file
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getFilePath()
+    public function getFilePath() : string
     {
         return $this->_filePath;
     }
 
     /**
-     * @param string $filePath
+     * @param string $filePath the location of the file, relitive to the wordpress root.
      */
-    public function setFilePath($filePath)
+    public function setFilePath(string $filePath)
     {
         if (! strlen($filePath) > 255) {
             $this->_filePath = $filePath;
@@ -78,17 +78,17 @@ class file
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getHash()
+    public function getHash() : string
     {
         return $this->_hash;
     }
 
     /**
-     * @param string $hash
+     * @param string $hash the SHA-2 (512) hash of the file
      */
-    public function setHash($hash)
+    public function setHash(string $hash)
     {
         if(! strlen($hash) > 64) {
             $this->_hash = $hash;

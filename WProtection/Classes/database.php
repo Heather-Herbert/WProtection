@@ -27,6 +27,11 @@ class database
         $this->log = Logger::getLogger(__CLASS__);
     }
 
+    public function isRateLimited() : bool
+    {
+
+    }
+
     public function checkHash(file $fileToCheck) : bool
     {
         $stmt = null;
