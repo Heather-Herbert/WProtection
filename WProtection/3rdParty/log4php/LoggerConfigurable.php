@@ -19,7 +19,7 @@
 */
 
 /** 
- * A base class from which all classes which have configurable properties are 
+ * A base class from which all Classes which have configurable properties are 
  * extended. Provides a generic setter with integrated validation.  
  * 
  * @package log4php

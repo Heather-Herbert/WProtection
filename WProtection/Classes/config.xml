@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns="http://logging.apache.org/log4php/">
+    <root>
+        <level value="DEBUG" />
+        <appender-ref ref="LogFileAppender" />
+        <appender-ref ref="SmtpAppender" />
+    </root>
+
+    <appender name="LogFileAppender" class="LoggerAppenderRollingFile">
+        <param name="File" value="/var/log/WProtection" />
+        <datePattern value="yyyy-MM-dd' WProtection_DEV.log'" />
+        <param name="AppendToFile" value="true" />
+        <rollingStyle value="Date" />
+        <maxSizeRollBackups value="10" />
+        <maximumFileSize value="10MB" />
+        <staticLogFileName value="false" />
+        <layout class="LoggerLayoutPattern">>
+            <conversionPattern value="%date{yyyy-MM-dd HH:mm:ss.fff} [%property{activityid}] %-5level [%C.%M] - %message%newline%exception" />
+        </layout>
+    </appender>
+
+    <appender name="SmtpAppender" class="LoggerAppenderMail">
+        <layout class="LoggerLayoutPattern">>
+            <conversionPattern value="%date{yyyy-MM-dd HH:mm:ss.fff} [%property{activityid}] %-5level [%C.%M] - %message%newline%exception" />
+        </layout>
+        <filter class="LoggerFilterLevelRange">
+            <param name="levelMin" value="fatal" />
+            <param name="levelMax" value="fatal" />
+        </filter>
+        <param name="to" value="heather.herbert.1975@gmail.com" />
+        <param name="from" value="WProtection@cryptonot.es" />
+    </appender>
+
+</configuration>

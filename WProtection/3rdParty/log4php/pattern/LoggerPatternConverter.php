@@ -20,7 +20,7 @@
 
 /**
  * LoggerPatternConverter is an abstract class that provides the formatting 
- * functionality that derived classes need.
+ * functionality that derived Classes need.
  * 
  * <p>Conversion specifiers in a conversion patterns are parsed to
  * individual PatternConverters. Each of which is responsible for

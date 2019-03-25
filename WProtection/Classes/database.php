@@ -12,6 +12,7 @@ include('../3rdParty/log4php/Logger.php');
 Logger::configure('config.xml');
 
 use mysql_xdevapi\Exception;
+use WProtection\Models;
 
 class database
 {
@@ -26,18 +27,27 @@ class database
         $this->log = Logger::getLogger(__CLASS__);
     }
 
-    public function checkHash($version, $filePath, $hash)
+    public function checkHash(file $fileToCheck) : bool
     {
-
+        $stmt = null;
+        $retValue = false;
         $dbh = $this->_connect();
         if ($dbh != null) {
             $stmt = $dbh->prepare("CALL `CHECK_Hash`(?, ?, ?);");
-            $stmt->bindValue(1, $version, PDO::PARAM_STR);
-            $stmt->bindValue(2, $filePath, PDO::PARAM_STR);
-            $stmt->bindValue(3, $hash, PDO::PARAM_STR);
+            $stmt->bindValue(1, $fileToCheck->getVersion(), PDO::PARAM_STR);
+            $stmt->bindValue(2, $fileToCheck->getFilePath(), PDO::PARAM_STR);
+            $stmt->bindValue(3, $fileToCheck->getHash(), PDO::PARAM_STR);
 
             $stmt->execute();
+            $itemCount = $stmt->fetchColumn();
+            if($itemCount > 0){
+                $retValue = true;
+            } else {
+                $this->log->info("itemCount = ]".$itemCount."[");
+            }
         }
+
+        return $retValue;
     }
 
     private function _connect()
@@ -45,7 +55,7 @@ class database
 
         $db = null;
         try {
-            $db = new PDO(settings::$DB_DSN, settings::$DB_USER, settings::$DB_PASS);
+            $db = new \PDO(settings::$DB_DSN, settings::$DB_USER, settings::$DB_PASS);
         } catch (Exception $ex) {
             $this->log->fatal('Connection failed: ' . $ex->getMessage());
         }
