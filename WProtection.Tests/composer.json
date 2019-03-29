@@ -1,0 +1,6 @@
+{
+    "require": {
+        "phpunit/phpunit": "^7.5",
+        "apache/log4php": "^2.3"
+    }
+}

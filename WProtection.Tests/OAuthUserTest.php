@@ -14,7 +14,7 @@ if (! defined('PATH_PREFIX')) {
 }
 
 include(PATH_PREFIX . "WProtection/Models/OAuthUser.php");
-
+include(PATH_PREFIX . "WProtection.Tests/vendor/autoload.php");
 
 use WProtection\Models\OAuthUser;
 use PHPUnit\Framework\TestCase;

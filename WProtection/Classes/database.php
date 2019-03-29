@@ -8,8 +8,17 @@
 
 namespace WProtection;
 
-include('../3rdParty/log4php/Logger.php');
-Logger::configure('config.xml');
+if (! defined('PATH_PREFIX')) {
+    define("PATH_PREFIX", "../../");
+}
+
+include(PATH_PREFIX . 'WProtection/vendor/autoload.php');
+include(PATH_PREFIX . 'WProtection/Models/file.php');
+
+use logger;
+
+Logger::configure(PATH_PREFIX . 'WProtection/Classes/config.xml');
+
 
 use mysql_xdevapi\Exception;
 use WProtection\Models;

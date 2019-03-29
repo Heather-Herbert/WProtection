@@ -6,11 +6,18 @@
  * Time: 11:03
  */
 
-
 namespace WProtection\Models;
 
-include('../3rdParty/log4php/Logger.php');
-Logger::configure('../classes/config.xml');
+if (! defined('PATH_PREFIX')) {
+    define("PATH_PREFIX", "../../");
+}
+
+include(PATH_PREFIX . 'WProtection/vendor/autoload.php');
+
+use logger;
+
+Logger::configure(PATH_PREFIX . 'WProtection/Classes/config.xml');
+
 
 
 class file

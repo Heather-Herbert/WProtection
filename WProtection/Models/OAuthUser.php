@@ -12,37 +12,26 @@ if (! defined('PATH_PREFIX')) {
     define("PATH_PREFIX", "../../");
 }
 
-use Logger;
-
-include(PATH_PREFIX . 'WProtection/3rdParty/log4php/Logger.php');
-Logger::configure(PATH_PREFIX . 'WProtection/Classes/config.xml');
+include(PATH_PREFIX . 'WProtection/vendor/autoload.php');
 
 
 class OAuthUser
 {
-    /** Holds the Logger. */
-    private $log;
     private $_GUID;
     private $_level;
     private $_secret;
     private $_name;
-
+    private $_email;
 
     /** Logger is instantiated in the constructor. */
     public function __construct()
     {
-        // The __CLASS__ constant holds the class name, in our case "Foo".
-        // Therefore this creates a logger named "Foo" (which we configured in the config file)
-        $this->log = Logger::getLogger(__CLASS__);
-
         $this->_GUID = "";
         $this->_level = 0;
         $this->_secret = "";
         $this->_name = "";
-
+        $this->_email = "";
     }
-
-    private $_email;
 
     /**
      * @return mixed
