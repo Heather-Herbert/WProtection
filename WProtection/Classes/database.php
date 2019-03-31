@@ -15,13 +15,14 @@ if (! defined('PATH_PREFIX')) {
 include(PATH_PREFIX . 'WProtection/vendor/autoload.php');
 include(PATH_PREFIX . 'WProtection/Models/file.php');
 
-use logger;
 
-Logger::configure(PATH_PREFIX . 'WProtection/Classes/config.xml');
+
+logger::configure(PATH_PREFIX . 'WProtection/Classes/config.xml');
 
 
 use mysql_xdevapi\Exception;
 use WProtection\Models;
+use PDO;
 
 class database
 {
@@ -33,7 +34,7 @@ class database
     {
         // The __CLASS__ constant holds the class name, in our case "Foo".
         // Therefore this creates a logger named "Foo" (which we configured in the config file)
-        $this->log = Logger::getLogger(__CLASS__);
+        $this->log = logger::getLogger(__CLASS__);
     }
 
     public function isRateLimited() : bool
@@ -69,7 +70,7 @@ class database
 
         $db = null;
         try {
-            $db = new \PDO(settings::$DB_DSN, settings::$DB_USER, settings::$DB_PASS);
+            $db = new PDO(settings::$DB_DSN, settings::$DB_USER, settings::$DB_PASS);
         } catch (Exception $ex) {
             $this->log->fatal('Connection failed: ' . $ex->getMessage());
         }

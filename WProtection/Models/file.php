@@ -14,9 +14,7 @@ if (! defined('PATH_PREFIX')) {
 
 include(PATH_PREFIX . 'WProtection/vendor/autoload.php');
 
-use logger;
-
-Logger::configure(PATH_PREFIX . 'WProtection/Classes/config.xml');
+logger::configure(PATH_PREFIX . 'WProtection/Classes/config.xml');
 
 
 
@@ -30,7 +28,7 @@ class file
     {
         // The __CLASS__ constant holds the class name, in our case "Foo".
         // Therefore this creates a logger named "Foo" (which we configured in the config file)
-        $this->log = Logger::getLogger(__CLASS__);
+        $this->log = logger::getLogger(__CLASS__);
 
 
         $_version = null;
@@ -60,6 +58,7 @@ class file
         if (! strlen($version) > 45) {
             $this->_version = $version;
         } else {
+            /** @noinspection SpellCheckingInspection */
             $this->log->error("Error in WProtection\\Models\\file::setVersion strlen(version) is over 45, version = ]".$version."[");
         }
     }
@@ -73,13 +72,14 @@ class file
     }
 
     /**
-     * @param string $filePath the location of the file, relitive to the wordpress root.
+     * @param string $filePath the location of the file, based on the wordpress root folder.
      */
     public function setFilePath(string $filePath)
     {
         if (! strlen($filePath) > 255) {
             $this->_filePath = $filePath;
         } else {
+            /** @noinspection SpellCheckingInspection */
             $this->log->error("Error in WProtection\\Models\\file::setFilePath strlen(filePath) is over 255, filePath = ]".$filePath."[");
         }
     }
@@ -100,6 +100,7 @@ class file
         if(! strlen($hash) > 64) {
             $this->_hash = $hash;
         } else {
+            /** @noinspection SpellCheckingInspection */
             $this->log->error("Error in WProtection\\Models\\file::setHash strlen(hash) is over 64, hash = ]".$hash."[");
         }
     }
