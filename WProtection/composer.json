@@ -2,6 +2,6 @@
     "require": {
         "apache/log4php": "^2.3",
         "bshaffer/oauth2-server-php": "^1.11",
-        "firebase/php-jwt": "^5.0"
+        "firebase/php-jwt": "^6.0"
     }
 }
